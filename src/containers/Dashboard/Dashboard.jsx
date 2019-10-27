@@ -12,15 +12,6 @@ export default class Dashboard extends Component {
     balance: 0
   };
 
-  setLocalStorage = () => {
-    localStorage.setItem(
-      "transactions",
-      JSON.stringify(this.state.transactions)
-    );
-    localStorage.setItem("balance", JSON.stringify(this.state.balance));
-    
-  };
-
   componentDidMount() {
     const transactionStorage = JSON.parse(localStorage.getItem("transactions"));
     const balanceStorage = JSON.parse(localStorage.getItem("balance"));
@@ -31,6 +22,13 @@ export default class Dashboard extends Component {
       });
     }
   }
+
+  setLocalStorage = () => {
+    const { transactions } = this.state;
+    const { balance } = this.state;
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+    localStorage.setItem("balance", JSON.stringify(balance));
+  };
 
   handleTransaction = newTransaction => {
     this.setState(
